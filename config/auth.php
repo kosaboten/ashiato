@@ -40,6 +40,13 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+
+            // 以下追加
+        'company' => [
+                'driver' => 'session',
+                'provider' => 'companies',
+        ],
     ],
 
     /*
@@ -69,6 +76,12 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+
+        // 以下追加
+        'companies' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Company::class,
+        ],
     ],
 
     /*
