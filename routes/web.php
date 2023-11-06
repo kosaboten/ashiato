@@ -57,7 +57,7 @@ Route::group(['prefix' => 'company'], function () {
 // });
 
 Route::resource('portfolios', PortfolioController::class)
-    ->only(['create', 'store', 'edit', 'update', 'destroy'])
+    ->only(['store', 'edit', 'update', 'destroy'])
     ->middleware('auth');
 
 Route::resource('portfolios', PortfolioController::class)

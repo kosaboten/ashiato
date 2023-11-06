@@ -10,9 +10,12 @@
                     </a>
                 </div>
             </div>
-
+            
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
+                <div>
+                    <button onclick="href='{{ route('portfolios.edit', 1) }}'">PORTFOLIO</button>
+                </div>
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
@@ -30,20 +33,33 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('profile.edit')">
+                        {{-- <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Profile') }}
-                        </x-dropdown-link>
+                        </x-dropdown-link> --}}
 
                         <!-- Authentication -->
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-
-                            <x-dropdown-link :href="route('logout')"
-                                    onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                        @auth
+                            <x-dropdown-link>
+                                <form action="{{ route('portfolios.store') }}" method="post">
+                                    @csrf
+                                    <input type="submit" value="NEW">
                             </x-dropdown-link>
-                        </form>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <x-dropdown-link :href="route('logout')"
+                                        onclick="event.preventDefault();
+                                                    this.closest('form').submit();">
+                                    {{ __('Log Out') }}
+                                </x-dropdown-link>
+                            </form>
+                        @else
+                            <x-dropdown-link :href="route('register')">
+                                {{ __('Sign Up') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link :href="route('login')">
+                                {{ __('Log In') }}
+                            </x-dropdown-link>
+                        @endauth
                     </x-slot>
                 </x-dropdown>
             </div>

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StorePortfolioRequest;
 use App\Http\Requests\UpdatePortfolioRequest;
 use App\Models\Portfolio;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 
 class PortfolioController extends Controller
 {
@@ -12,24 +14,36 @@ class PortfolioController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
+    {   
+        // 人材一覧ページを表示
         return view('portfolios.index');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorePortfolioRequest $request)
+    public function store()
     {
-        //
+        $portfolio = new Portfolio();
+        // ログイン中のユーザーのIDを取得して代入
+        $portfolio->user_id = Auth::id();
+
+        // トランザクション開始
+        DB::beginTransaction();
+        try{
+            $portfolio->save();
+
+            DB::commit();
+        } catch(\Exception $e) {
+            DB::rollback();     // ミスったらロールバック
+
+            // backで直前のページ(create.blade.php)にリダイレクトする
+            // withInputで入力した値を渡す
+            // withErrorsでエラーオブジェクトにエラーメッセージを追加する
+            return back()->withInput()->withErrors($e->getMessage());
+        }
+
+        return redirect(route('portfolios.edit', $portfolio));
     }
 
     /**
@@ -45,7 +59,8 @@ class PortfolioController extends Controller
      */
     public function edit(Portfolio $portfolio)
     {
-        //
+        dd($portfolio);
+        return view('portfolios.edit');
     }
 
     /**

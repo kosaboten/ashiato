@@ -17,15 +17,15 @@ return new class extends Migration
                 ->constrained()
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
-            $table->string('image');
-            $table->string('affiliation');
-            $table->text('self_introduction');
-            $table->text('work_experience');
-            $table->string('region');
-            $table->string('twitter');
-            $table->string('facebook');
-            $table->string('instagram');
-            $table->integer('public_status');
+            $table->string('image')->nullable(true);
+            $table->string('affiliation')->nullable(true);
+            $table->text('self_introduction')->nullable(true);
+            $table->text('work_experience')->nullable(true);
+            $table->string('region')->nullable(true);
+            $table->string('twitter')->nullable(true);
+            $table->string('facebook')->nullable(true);
+            $table->string('instagram')->nullable(true);
+            $table->integer('public_status')->nullable(true);
             $table->timestamps();
         });
     }
