@@ -14,9 +14,14 @@ class PortfolioController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {   
+    {
         // 人材一覧ページを表示
         return view('portfolios.index');
+    }
+
+    public function list()
+    {
+
     }
 
     /**
@@ -30,11 +35,11 @@ class PortfolioController extends Controller
 
         // トランザクション開始
         DB::beginTransaction();
-        try{
+        try {
             $portfolio->save();
 
             DB::commit();
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             DB::rollback();     // ミスったらロールバック
 
             // backで直前のページ(create.blade.php)にリダイレクトする

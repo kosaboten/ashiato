@@ -14,7 +14,7 @@
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <div>
-                    <button onclick="href='{{ route('portfolios.edit', 1) }}'">PORTFOLIO</button>
+                    <a href="{{ route('portfolios.list') }}">PORTFOLIO</a>
                 </div>
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
@@ -43,6 +43,7 @@
                                 <form action="{{ route('portfolios.store') }}" method="post">
                                     @csrf
                                     <input type="submit" value="NEW">
+                                </form>
                             </x-dropdown-link>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
