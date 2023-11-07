@@ -46,7 +46,7 @@ Route::group(['prefix' => 'company'], function () {
     // 以下の中は認証必須のエンドポイントとなる
     Route::middleware(['auth:company'])->group(function () {
         // ダッシュボード
-        Route::get('dashboard', fn() => view('companies.index'))
+        Route::get('dashboard', fn() => view('portfolios.index'))
             ->name('company.dashboard');
     });
 });

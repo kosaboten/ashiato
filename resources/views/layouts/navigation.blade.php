@@ -14,6 +14,9 @@
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <div>
+                    <a href='{{ route('portfolios.show', 1) }}'>SHOW</a>
+                </div>
+                <div>
                     <a href="{{ route('portfolios.list') }}">PORTFOLIO</a>
                 </div>
                 <x-dropdown align="right" width="48">

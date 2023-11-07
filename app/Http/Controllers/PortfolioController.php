@@ -58,7 +58,7 @@ class PortfolioController extends Controller
      */
     public function show(Portfolio $portfolio)
     {
-        //
+        return view('portfolios.show', compact('portfolio'));
     }
 
     /**
