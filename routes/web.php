@@ -56,6 +56,9 @@ Route::group(['prefix' => 'company'], function () {
 //     // ここに記述
 // });
 
+// /listの部分がパラメータだと勘違いされてしまうので上に書いた
+Route::get('/portfolios/list', [PortfolioController::class, 'list'])->name('portfolios.list');
+
 Route::resource('portfolios', PortfolioController::class)
     ->only(['store', 'edit', 'update', 'destroy'])
     ->middleware('auth');
@@ -64,4 +67,3 @@ Route::resource('portfolios', PortfolioController::class)
     ->only(['show', 'index']);
 require __DIR__.'/auth.php';
 
-Route::get('/portfolios/list', [PortfolioController::class, 'list'])->name('portfolios.list');

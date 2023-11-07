@@ -21,7 +21,9 @@ class PortfolioController extends Controller
 
     public function list()
     {
-
+        // user_idがログイン中のユーザーと等しいポートフォリオを一件取得する
+        $portfolio = Portfolio::where('user_id', Auth::id())->limit(1)->get();
+        return redirect(route('portfolios.edit', $portfolio[0]));
     }
 
     /**
@@ -64,8 +66,7 @@ class PortfolioController extends Controller
      */
     public function edit(Portfolio $portfolio)
     {
-        dd($portfolio);
-        return view('portfolios.edit');
+        return view('portfolios.edit', compact('portfolio'));
     }
 
     /**
