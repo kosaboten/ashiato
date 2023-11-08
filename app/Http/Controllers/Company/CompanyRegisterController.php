@@ -40,6 +40,7 @@ class CompanyRegisterController extends Controller
 
         Auth::guard('company')->login($company);
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect(route('jobs.index'));
+        // RouteServiceProvider::HOME
     }
 }

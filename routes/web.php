@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Company\CompanyLoginController;
 use App\Http\Controllers\Company\CompanyRegisterController;
+use App\Http\Controllers\JobController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -17,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [PortfolioController::class, 'index'])
+Route::get('/', [JobController::class, 'index'])
     ->name('root');
 
 Route::get('/dashboard', function () {
@@ -67,3 +68,12 @@ Route::resource('portfolios', PortfolioController::class)
     ->only(['show', 'index']);
 require __DIR__.'/auth.php';
 
+
+Route::resource('jobs', JobController::class)
+    ->only(['create', 'store', 'edit', 'update', 'destroy'])
+    ->middleware('auth');
+
+Route::resource('jobs', JobController::class)
+    ->only(['show', 'index']);
+
+require __DIR__.'/auth.php';
