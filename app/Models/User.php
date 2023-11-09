@@ -42,4 +42,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function portfolios()
+    {
+        return $this->belongsTo(Portfolio::class);
+    }
 }
