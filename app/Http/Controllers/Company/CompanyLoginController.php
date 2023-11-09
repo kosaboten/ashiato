@@ -28,7 +28,7 @@ class CompanyLoginController extends Controller
         }
 
         return back()->withErrors([
-            'login' => ['ログインに失敗しました'],
+            'login_msg' => ['ログインに失敗しました'],
         ]);
     }
 }
